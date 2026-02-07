@@ -86,6 +86,14 @@ GLFWbool _glfwSelectPlatform(int desiredID, _GLFWplatform* platform)
     {
         // If there is exactly one platform available for auto-selection, let it emit the
         // error on failure as the platform-specific error description may be more helpful
+
+        // FIXME: The build includes Wayland now, and completes (with a hack I
+        // put into the Makefile) but still won't actually run.
+        //
+        // So, how do I get this to build for both X11 and Wayland?
+        printf("the platform ID is %i\n", supportedPlatforms[1].ID);
+        printf("the number of platforms is %i\n", count);
+
         if (count == 1)
             return supportedPlatforms[0].connect(supportedPlatforms[0].ID, platform);
 
@@ -94,6 +102,8 @@ GLFWbool _glfwSelectPlatform(int desiredID, _GLFWplatform* platform)
             if (supportedPlatforms[i].connect(desiredID, platform))
                 return GLFW_TRUE;
         }
+
+        printf("Got to here\n");
 
         _glfwInputError(GLFW_PLATFORM_UNAVAILABLE, "Failed to detect any supported platform");
     }

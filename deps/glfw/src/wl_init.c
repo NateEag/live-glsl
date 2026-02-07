@@ -460,6 +460,10 @@ GLFWbool _glfwConnectWayland(int platformID, _GLFWplatform* platform)
         _glfwCreateWindowSurfaceWayland,
     };
 
+    // This does _NOT_ fail if I export LD_LIBRARY_PATH to include the exact
+    // directory this can be found in.
+    //
+    // TODO: Get shell.nix to do this correctly, automatically.
     void* module = _glfwPlatformLoadModule("libwayland-client.so.0");
     if (!module)
     {
@@ -794,4 +798,3 @@ void _glfwTerminateWayland(void)
 }
 
 #endif // _GLFW_WAYLAND
-
