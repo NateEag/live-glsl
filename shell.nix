@@ -14,7 +14,7 @@ pkgs.mkShell {
     libxkbcommon
     wayland-scanner
     wayland-protocols
-    glfw-wayland
+    glfw
     libffi
 
     # X11-related packages.
